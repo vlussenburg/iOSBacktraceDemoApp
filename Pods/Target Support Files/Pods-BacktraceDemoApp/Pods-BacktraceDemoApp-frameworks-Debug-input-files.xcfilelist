@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-BacktraceDemoApp/Pods-BacktraceDemoApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Backtrace/Backtrace.framework
+${BUILT_PRODUCTS_DIR}/Backtrace-PLCrashReporter/Backtrace_PLCrashReporter.framework

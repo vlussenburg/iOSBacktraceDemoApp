@@ -1,0 +1,6 @@
+framework module Pods_BacktraceDemoApp {
+  umbrella header "Pods-BacktraceDemoApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
