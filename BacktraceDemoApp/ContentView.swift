@@ -8,6 +8,10 @@
 import SwiftUI
 import Backtrace
 
+enum MyError: Error {
+    case runtimeError(String)
+}
+
 struct ContentView: View {
     @State var message: String = ""
     
@@ -27,20 +31,26 @@ struct ContentView: View {
             Text("Crash")
         }
 
-        Text("Tap me to throw an error!")
+        Text("Tap me to throw, catch and report an error!")
             .padding()
         
         Button {
             message = "sending error..."
-            let e = NSError(domain: "x", code: 1, userInfo: nil)
-            BacktraceClient.shared?.send(error: e, attachmentPaths: [], completion: { (result) in
-                print(result)
-                message = "error sent"
-            })
+            do {
+                try someFunction()
+            } catch {
+                BacktraceClient.shared?.send(error: error, attachmentPaths: [], completion: { (result) in
+                    print(result)
+                    message = "error sent"
+                })
+            }
         } label: {
-            Text("Error")
+            Text("Caught error")
         }
-
+    }
+    
+    func someFunction() throws {
+        throw MyError.runtimeError("some message")
     }
 }
 
